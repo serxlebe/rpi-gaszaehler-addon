@@ -1,5 +1,10 @@
 # syntax=docker/dockerfile:1
 
+# Muss vor der ersten FROM-Zeile stehen (globaler Scope), damit der vom
+# Supervisor übergebene --build-arg BUILD_FROM=... auch in der zweiten
+# FROM-Zeile unten ankommt.
+ARG BUILD_FROM
+
 # --- Build-Stage ---------------------------------------------------------
 # Kompiliert die Rust-App. Läuft unabhängig von BUILD_FROM, der Supervisor
 # baut das Add-on je Zielarchitektur (ggf. via QEMU-Emulation).
@@ -18,7 +23,6 @@ RUN git clone --depth 1 https://github.com/serxlebe/rpi-gaszaehler.git . \
     && cargo build --release
 
 # --- Runtime-Stage (HA Add-on Base-Image) --------------------------------
-ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # bashio ist im HA-Base-Image (base-debian) bereits enthalten
