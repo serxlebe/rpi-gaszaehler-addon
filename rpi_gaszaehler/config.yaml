@@ -11,9 +11,14 @@ init: false
 startup: application
 boot: auto
 
-# Gewährt dem Add-on Zugriff auf /dev/gpiomem, /dev/gpiochip*, /sys/class/gpio
-# Ersetzt das manuelle Device-/udev-Mapping aus dem reinen Docker-Setup.
-gpio: true
+# full_access statt gpio:true, weil rppal's Interrupt-Handling
+# (set_interrupt/poll_interrupt) über ioctl auf /dev/gpiochip* läuft.
+# gpio:true deckt nur /dev/gpiomem ab und wird zusätzlich vom AppArmor-
+# Profil des Add-ons beim ioctl-Aufruf blockiert -> "Operation not
+# permitted". full_access deaktiviert das AppArmor-Confinement und
+# gibt vollen Gerätezugriff (schließt "devices:"/"gpio:" aus, daher
+# hier nicht mehr gesetzt).
+full_access: true
 
 # Fordert MQTT-Zugangsdaten vom Supervisor an (z. B. vom Mosquitto-Add-on).
 # Werden dem Container als Env-Variablen bereitgestellt, siehe run.sh.
