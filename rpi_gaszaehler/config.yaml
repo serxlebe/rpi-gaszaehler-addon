@@ -1,5 +1,5 @@
 name: "RPi Gaszähler"
-version: "1.0.0"
+version: "1.0.2"
 slug: "rpi_gaszaehler"
 description: "Liest den Gasverbrauch über einen GPIO-Impulsgeber (Reed-Kontakt) am Raspberry Pi aus"
 url: "https://github.com/serxlebe/rpi-gaszaehler"
