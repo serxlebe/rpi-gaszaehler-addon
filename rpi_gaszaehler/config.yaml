@@ -1,5 +1,5 @@
 name: "RPi Gaszähler"
-version: "1.0.4"
+version: "1.0.5"
 slug: "rpi_gaszaehler"
 description: "Liest den Gasverbrauch über einen GPIO-Impulsgeber (Reed-Kontakt) am Raspberry Pi aus"
 url: "https://github.com/serxlebe/rpi-gaszaehler"
@@ -16,10 +16,8 @@ boot: auto
 # permitted". full_access deaktiviert das AppArmor-Confinement und
 # gibt vollen Gerätezugriff (schließt "devices:"/"gpio:" aus, daher
 # hier nicht mehr gesetzt).
-#full_access: true
-gpio: true
-privileged:
-  - SYS_RAWIO
+full_access: true
+#gpio: true
 devices:
   - /dev/gpiomem:/dev/gpiomem:rwm
   - /dev/gpiochip0:/dev/gpiochip0:rwm
