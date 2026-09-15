@@ -17,11 +17,6 @@ boot: auto
 # gibt vollen Gerätezugriff (schließt "devices:"/"gpio:" aus, daher
 # hier nicht mehr gesetzt).
 full_access: true
-#gpio: true
-devices:
-  - /dev/gpiomem:/dev/gpiomem:rwm
-  - /dev/gpiochip0:/dev/gpiochip0:rwm
-  - /dev/gpiochip4:/dev/gpiochip4:rwm
 
 # Fordert MQTT-Zugangsdaten vom Supervisor an (z. B. vom Mosquitto-Add-on).
 # Werden dem Container als Env-Variablen bereitgestellt, siehe run.sh.
